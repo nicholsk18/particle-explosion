@@ -10,16 +10,23 @@ int main() {
         std::cout << "Error initialising sdl" << std::endl;
     }
 
-    // window open?
-    bool isRunning = false;
+    while (true) {
 
-    SDL_Event event;
-
-    while (!isRunning) {
-        while(SDL_PollEvent(&event)){
-            if (event.type == SDL_QUIT) {
-                isRunning = true;
+        // draw particles
+        for(int x = 0; x < particle::Screen::SCREEN_HEIGHT; x++) {
+            for(int y = 0; y < particle::Screen::SCREEN_WIDTH; y++) {
+                screen.setPixel(x, y, 128, 0, 255);
             }
+        }
+
+        screen.setPixel(400, 300, 255, 255, 255);
+
+        // draw the screen
+        screen.update();
+
+        // check for messages/events
+        if(!screen.processEvents()){
+            break;
         }
     }
 
