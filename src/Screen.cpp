@@ -4,7 +4,7 @@
 
 #include "Screen.h"
 
-namespace particle {
+namespace pix {
 
     Screen::Screen(): m_window(NULL), m_renderer(NULL), m_texture(NULL), m_buffer(NULL) {
 
@@ -48,6 +48,11 @@ namespace particle {
     }
 
     void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
+
+        // Only plot a pix if its within screen width or height
+        if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT) {
+            return;
+        }
         Uint32 color = 0;
 
         // add a color and shift it right

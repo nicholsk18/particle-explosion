@@ -3,7 +3,7 @@ project(particle_explosion)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
-add_executable(${PROJECT_NAME} src/main.cpp src/Screen.cpp src/Screen.h)
+add_executable(${PROJECT_NAME} src/main.cpp src/Screen.cpp src/Screen.h src/Particle.cpp src/Particle.h src/Swarm.cpp src/Swarm.h)
 
 INCLUDE(FindPkgConfig)
 

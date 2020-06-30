@@ -8,7 +8,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 
-namespace particle {
+namespace pix {
 
     class Screen {
     public:

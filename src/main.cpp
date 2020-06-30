@@ -1,15 +1,23 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <math.h>
+#include <stdlib.h>
 #include "Screen.h"
+#include "Swarm.h"
 
 int main() {
 
-    particle::Screen screen;
+    // seeds random number
+    // dont return anything
+    srand(time(NULL));
+
+    pix::Screen screen;
 
     if(screen.init()) {
         std::cout << "Error initialising sdl" << std::endl;
     }
+
+    pix::Swarm swarm;
 
     while (true) {
         int elapsed = SDL_GetTicks();
@@ -18,13 +26,18 @@ int main() {
         // mult elapsed by dif number to change speed
         unsigned char green = (1 + sin(elapsed * 0.0001)) * 128;
         unsigned char red = (1 + sin(elapsed * 0.0002)) * 128;
-        unsigned char blue = (1 + sin(elapsed * 0.0003)) * 128;
+        unsigned char blue = (1 + sin(elapsed * 0.0001)) * 128;
 
-        // draw particles
-        for(int y = 0; y < particle::Screen::SCREEN_HEIGHT; y++) {
-            for(int x = 0; x < particle::Screen::SCREEN_WIDTH; x++) {
-                screen.setPixel(x, y, red, green, blue);
-            }
+
+
+        const pix::Particle* const pParticles = swarm.getParticles();
+        for(int i = 0; i < pix::Swarm::NPARTICLES; i++) {
+            pix::Particle particle = pParticles[i];
+
+            int x = (particle.m_x + 1) * pix::Screen::SCREEN_WIDTH / 2;
+            int y = (particle.m_y + 1) * pix::Screen::SCREEN_HEIGHT / 2;
+
+            screen.setPixel(x, y, red, green, blue);
         }
 
         // draw the screen
