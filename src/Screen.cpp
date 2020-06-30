@@ -47,6 +47,10 @@ namespace pix {
         return true;
     }
 
+    void Screen::clear() {
+        memset(m_buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+    }
+
     void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
 
         // Only plot a pix if its within screen width or height

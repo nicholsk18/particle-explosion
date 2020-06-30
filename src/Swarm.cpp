@@ -11,4 +11,10 @@ namespace pix {
     Swarm::~Swarm() {
         delete[] m_pParticles;
     }
+
+    void Swarm::update() {
+        for(int i = 0; i < pix::Swarm::NPARTICLES; i++) {
+            m_pParticles[i].update();
+        }
+    }
 }
