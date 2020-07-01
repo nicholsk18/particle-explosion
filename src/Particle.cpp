@@ -3,30 +3,25 @@
 //
 
 #include "Particle.h"
+#include <math.h>
 #include <stdlib.h>
 
 namespace pix {
-    Particle::Particle() {
-        // returns number between -1, 1
-        m_x = (2.0 * rand() / RAND_MAX) - 1;
-        m_y = (2.0 * rand() / RAND_MAX) - 1;
+    Particle::Particle(): m_x(0), m_y(0) {
 
-        m_xSpeed = 0.005 * ((2.0 * rand()/RAND_MAX) - 1);
-        m_ySpeed = 0.005 * ((2.0 * rand()/RAND_MAX) - 1);
+        // create angle
+        m_direction = (2 * M_PI * rand()) / RAND_MAX;
+        // create speed
+        m_speed = (0.001 * rand()) / RAND_MAX;
     }
 
     Particle::~Particle() {}
 
     void Particle::update() {
-        m_x += m_xSpeed;
-        m_y += m_ySpeed;
+        double xSpeed = m_speed * cos(m_direction);
+        double ySpeed = m_speed * sin(m_direction);
 
-        // make particles bounce of edge of screen
-        if(m_x < -1 || m_x >= 1.0) {
-            m_xSpeed = -m_xSpeed;
-        }
-        if(m_y < -1 || m_y >= 1.0) {
-            m_ySpeed = -m_ySpeed;
-        }
+        m_x += xSpeed;
+        m_y += ySpeed;
     }
 }
