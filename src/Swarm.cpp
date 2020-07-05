@@ -4,7 +4,7 @@
 
 #include "Swarm.h"
 namespace pix {
-    Swarm::Swarm() {
+    Swarm::Swarm(): lastTime(0) {
         m_pParticles = new Particle[NPARTICLES];
     }
 
@@ -12,9 +12,14 @@ namespace pix {
         delete[] m_pParticles;
     }
 
-    void Swarm::update() {
+    void Swarm::update(int elapsed) {
+        // how much time has elapsed since last time
+        int interval = elapsed - lastTime;
+
         for(int i = 0; i < pix::Swarm::NPARTICLES; i++) {
-            m_pParticles[i].update();
+            m_pParticles[i].update(interval);
         }
+
+        lastTime = elapsed;
     }
 }

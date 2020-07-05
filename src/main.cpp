@@ -23,7 +23,7 @@ int main() {
         int elapsed = SDL_GetTicks();
 
         screen.clear();
-        swarm.update();
+        swarm.update(elapsed);
 
         // unsigned so its always positive
         // mult elapsed by dif number to change speed
