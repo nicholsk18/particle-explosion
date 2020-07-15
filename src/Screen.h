@@ -29,6 +29,7 @@ namespace pix {
         bool processEvents();
         void close();
         void clear();
+        void boxBlur();
 
     };
 

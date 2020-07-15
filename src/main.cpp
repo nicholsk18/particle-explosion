@@ -22,7 +22,6 @@ int main() {
     while (true) {
         int elapsed = SDL_GetTicks();
 
-        screen.clear();
         swarm.update(elapsed);
 
         // unsigned so its always positive
@@ -40,6 +39,8 @@ int main() {
 
             screen.setPixel(x, y, red, green, blue);
         }
+
+        screen.boxBlur();
 
         // draw the screen
         screen.update();

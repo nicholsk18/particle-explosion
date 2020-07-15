@@ -47,6 +47,10 @@ namespace pix {
         return true;
     }
 
+    void Screen::boxBlur() {
+        
+    }
+
     void Screen::clear() {
         memset(m_buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
     }
